@@ -1,5 +1,29 @@
 #!/bin/bash
 
+#######################################
+# About: This script lists users who have read access to a specified GitHub repository.
+# Input: ./script.sh repo_owner repo_name
+# Owner: Sertac Engin
+#######################################
+# Function to display usage instructions
+function display_usage {
+    echo "Usage: $0 <repo_owner> <repo_name>"
+    echo "This script lists users with read access to a specified GitHub repository."
+    echo
+    echo "Arguments:"
+    echo "  <repo_owner>  The owner of the repository."
+    echo "  <repo_name>   The name of the repository."
+    echo
+    echo "Example: $0 myusername myrepository"
+}
+
+# Check if no arguments were provided
+if [[ $# -ne 2 ]]; then
+    echo "Error: Missing arguments."
+    display_usage
+    exit 1
+fi
+
 # GitHub API URL
 API_URL="https://api.github.com"
 
@@ -37,6 +61,5 @@ function list_users_with_read_access {
 }
 
 # Main script
-
 echo "Listing users with read access to ${REPO_OWNER}/${REPO_NAME}..."
 list_users_with_read_access
